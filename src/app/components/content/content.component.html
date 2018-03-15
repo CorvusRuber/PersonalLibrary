@@ -1,23 +1,23 @@
-<mat-card>
-    <mat-card-title>Contenuto</mat-card-title>
+<mat-card *ngIf="func && items">
+    <mat-card-title>{{func | translation:'capitalize'}}</mat-card-title>
     <mat-grid-list cols="3" rowHeight="3:1" *ngIf="items">
         <mat-grid-tile *ngFor="let item of items">
             <mat-card>
                 <mat-card-header>
                     <mat-card-title *ngIf="item.titolo;else other_content" color="primary">
-                        {{item.titolo}}
+                        {{item.titolo | translation}}
                     </mat-card-title>
                     <ng-template #other_content>
                         <mat-card-title>
-                            {{item.nome}} Niente titolo
+                            {{item.nome | translation}} Niente titolo
                         </mat-card-title>
                     </ng-template>
-                    <img mat-card-avatar>
+                    <img mat-card-avatar *ngIf="item.img">
                 </mat-card-header>
                 <mat-divider></mat-divider>
                 <!-- <img mat-card-image src="item.cover"> -->
                 <mat-card-content class="top-space">
-                    {{item.descrizione}}
+                    {{item.descrizione | translation}}
                 </mat-card-content>
                 <mat-divider></mat-divider>
                 <mat-card-actions>

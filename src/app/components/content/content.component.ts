@@ -18,7 +18,6 @@ export class ContentComponent implements OnInit {
 
   constructor(route: ActivatedRoute, private service: ApiService, public dialog: MatDialog) {
     this.func = route.data["_value"].function;
-    console.log(this.func);
   }
 
   ngOnInit() {
@@ -37,8 +36,6 @@ export class ContentComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.dir(result);
       //this.animal = result;
     });
 

@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 })
 export class ContentEditComponent implements OnInit {
   item: any;
+  required: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ContentEditComponent>) {
 
@@ -15,6 +16,8 @@ export class ContentEditComponent implements OnInit {
 
   ngOnInit() {
     this.item = this.data.item;
+    this.required = this.data.requiredFields;
+    console.dir(this.required);
   }
 
   onNoClick(): void {

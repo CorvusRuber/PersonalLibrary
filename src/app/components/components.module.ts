@@ -6,7 +6,10 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatGridListModule,
+  MatIconModule,
   MatInputModule,
+  MatListModule,
+  MatMenuModule,
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
@@ -18,10 +21,12 @@ import { ContainerComponent } from './container/container.component';
 import { ContentComponent } from './content/content.component';
 import { ContentEditComponent } from './content-edit/content-edit.component';
 import { MatCardModule } from '@angular/material/card';
+import { MediaMatcher } from "@angular/cdk/layout";
 import { MenuComponent } from './menu/menu.component';
 import { NgModule } from '@angular/core';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PipesModule } from "../pipes/pipes.module";
+import { TranslationPipe } from "../pipes/translation/translation.pipe";
 import { WelcomeComponent } from './welcome/welcome.component';
 
 export let CONTENT_MODULE = "content-module";
@@ -50,6 +55,16 @@ export const contentRoutes: Routes = [
         path: "authors",
         component: ContentComponent,
         data: { function: "authors" }
+      },
+      {
+        path: "publishers",
+        component: ContentComponent,
+        data: { function: "publishers" }
+      },
+      {
+        path: "genres",
+        component: ContentComponent,
+        data: { function: "genres" }
       },
       {
         path: "**",
@@ -107,6 +122,9 @@ export const contentRoutes: Routes = [
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
+    MatListModule,
+    MatIconModule,
     PipesModule,
     RouterModule.forRoot(
       contentRoutes,
@@ -114,6 +132,7 @@ export const contentRoutes: Routes = [
     ),
   ],
   declarations: [ContainerComponent, NotFoundComponent, ContentComponent, MenuComponent, WelcomeComponent, ContentEditComponent],
-  entryComponents: [ContentEditComponent]
+  entryComponents: [ContentEditComponent],
+  providers: [MediaMatcher, TranslationPipe]
 })
 export class ComponentsModule { }

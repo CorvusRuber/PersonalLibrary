@@ -3,15 +3,25 @@
         <mat-card-header>
             <mat-card-title>
                 <mat-form-field>
-                    <input matInput value="{{item.titolo}}">
+                    <input *ngIf="item && item.titolo" matInput value="{{item.titolo}}">
+                    <input *ngIf="required && required.titolo" matInput placeholder="{{required.titolo}}">
+                    <input *ngIf="item && item.nome" matInput value="{{item.nome}}">
+                    <input *ngIf="required && required.nome" matInput placeholder="{{required.nome}}">
+                </mat-form-field>
+                <mat-form-field *ngIf="(item && item.nome && item.cognome) || (required && required.nome && required.cognome)">
+                    <input *ngIf="item && item.cognome" matInput value="{{item.cognome}}">
+                    <input *ngIf="required && required.cognome" matInput placeholder="{{required.cognome}}">
                 </mat-form-field>
             </mat-card-title>
-            <img mat-card-avatar>
+            <img mat-card-avatar *ngIf="item && item.img">
         </mat-card-header>
         <mat-divider></mat-divider>
         <!-- <img mat-card-image src="item.cover"> -->
         <mat-card-content class="top-space">
-            {{item.descrizione}}
+            <mat-form-field>
+                <input matInput *ngIf="item && item.descrizione" value="{{item.descrizione}}">
+                <input matInput *ngIf="required && required.descrizione" placeholder="{{required.descrizione}}">
+            </mat-form-field>
         </mat-card-content>
     </mat-card>
 </mat-dialog-content>

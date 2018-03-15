@@ -1,11 +1,7 @@
-.custom-container {
-    width: 100%;
-    height: 100%;
-    // border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
+@import "../../app.component.scss";
 .custom-sidenav-content {
     // display: flex;
+    // flex: 2 1 0;
     // height: 100%;
     align-items: center;
     justify-content: center;
@@ -18,4 +14,18 @@
 .title-style {
     border: 2%;
     padding: 2%;
+}
+
+.menu-bar {
+    flex: 1;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

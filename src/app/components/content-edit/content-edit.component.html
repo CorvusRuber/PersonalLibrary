@@ -1,0 +1,21 @@
+<mat-dialog-content>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <mat-form-field>
+                    <input matInput value="{{item.titolo}}">
+                </mat-form-field>
+            </mat-card-title>
+            <img mat-card-avatar>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <!-- <img mat-card-image src="item.cover"> -->
+        <mat-card-content class="top-space">
+            {{item.descrizione}}
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="accent">Salva</button>
+    <button mat-raised-button color="accent" (click)="close()">Annulla</button>
+</mat-dialog-actions>

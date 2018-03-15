@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-title>Contenuto</mat-card-title>
+    <mat-grid-list cols="3" rowHeight="3:1" *ngIf="items">
+        <mat-grid-tile *ngFor="let item of items">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title *ngIf="item.titolo;else other_content" color="primary">
+                        {{item.titolo}}
+                    </mat-card-title>
+                    <ng-template #other_content>
+                        <mat-card-title>
+                            {{item.nome}} Niente titolo
+                        </mat-card-title>
+                    </ng-template>
+                    <img mat-card-avatar>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <!-- <img mat-card-image src="item.cover"> -->
+                <mat-card-content class="top-space">
+                    {{item.descrizione}}
+                </mat-card-content>
+                <mat-divider></mat-divider>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="modify(item)">Modifica</button>
+                    <button mat-raised-button color="accent">Cancella</button>
+                </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

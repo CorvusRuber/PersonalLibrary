@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+    <span class="title-style">Biblioteca</span>
+
+    <button type="button" mat-raised-button color="accent" (click)="drawer.toggle()">Menu</button>
+</mat-toolbar>
+
+<mat-drawer-container autosize>
+    <mat-drawer #drawer class="custom-sidenav" mode="side">
+        <app-menu></app-menu>
+    </mat-drawer>
+
+    <div class="custom-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-drawer-container>

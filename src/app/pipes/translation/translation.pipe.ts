@@ -14,8 +14,10 @@ export class TranslationPipe implements PipeTransform {
     });
   }
 
+  loadResources() { }
+
   transform(value: any, args?: any): any {
-    if (this.resources[value]) {
+    if (this.resources && this.resources[value]) {
       switch (args) {
         case "capitalize":
           return this.resources[value].replace(/\b(\w)/g, s => s.toUpperCase());
@@ -26,7 +28,6 @@ export class TranslationPipe implements PipeTransform {
         default:
           return this.resources[value];
       }
-
     }
     return value;
   }

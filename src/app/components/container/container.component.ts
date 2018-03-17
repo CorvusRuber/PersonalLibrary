@@ -11,7 +11,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 })
 export class ContainerComponent implements OnInit, OnDestroy {
   menuOpen = false;
-  items: any;
+  items: any[];
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
@@ -33,9 +33,10 @@ export class ContainerComponent implements OnInit, OnDestroy {
     if (this.menuOpen) {
       this.service.get("collections").then((data) => {
         this.items = data;
-        // console.dir(data);
+        this.items.push({ name: "ricerca" });
+        console.dir(data);
         this.items.forEach(element => {
-          console.log(element.name);
+          console.log(element);
         });
       });
     }

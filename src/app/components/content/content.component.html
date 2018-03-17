@@ -1,30 +1,44 @@
-<mat-card *ngIf="func && items">
+<mat-card *ngIf="func">
     <mat-card-title>{{func | translation:'capitalize'}}</mat-card-title>
-    <mat-grid-list cols="3" rowHeight="3:1" *ngIf="items">
-        <mat-grid-tile *ngFor="let item of items">
-            <mat-card>
-                <mat-card-header>
-                    <mat-card-title *ngIf="item.titolo;else other_content" color="primary">
-                        {{item.titolo | translation}}
-                    </mat-card-title>
-                    <ng-template #other_content>
-                        <mat-card-title>
-                            {{item.nome | translation}} Niente titolo
-                        </mat-card-title>
-                    </ng-template>
-                    <img mat-card-avatar *ngIf="item.img">
-                </mat-card-header>
-                <mat-divider></mat-divider>
-                <!-- <img mat-card-image src="item.cover"> -->
-                <mat-card-content class="top-space">
-                    {{item.descrizione | translation}}
-                </mat-card-content>
-                <mat-divider></mat-divider>
-                <mat-card-actions>
-                    <button mat-raised-button color="accent" (click)="modify(item)">Modifica</button>
-                    <button mat-raised-button color="accent">Cancella</button>
-                </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <mat-tab-group (selectedTabChange)="manageTab($event)" *ngIf="items;else no_content">
+        <mat-tab label="Pagina {{page}}" *ngFor="let page of pager.pages">
+            <mat-grid-list cols="4">
+                <mat-grid-tile *ngFor="let item of pagedItems" class="tile-content">
+                    <mat-card class="content-card">
+                        <mat-card-header>
+                            <mat-card-title *ngIf="item.titolo;else other_content" color="primary">
+                                <h2>{{item.titolo | translation}}</h2>
+                            </mat-card-title>
+                            <ng-template #other_content>
+                                <mat-card-title>
+                                    {{item.nome | translation}}
+                                </mat-card-title>
+                            </ng-template>
+                            <img mat-card-avatar *ngIf="item.img" [src]="getImage(item.img)">
+                        </mat-card-header>
+                        <img mat-card-image *ngIf="item.img" [src]="getImage(item.img)">
+                        <mat-card-content>
+                            {{item.descrizione | translation}}
+                        </mat-card-content>
+                        <mat-divider></mat-divider>
+                        <mat-card-actions>
+                            <button mat-raised-button color="accent" (click)="modify(item)">Modifica</button>
+                            <button mat-raised-button color="accent">Cancella</button>
+                        </mat-card-actions>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+    </mat-tab-group>
+    <ng-template #no_content>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Nessun contenuto presente</h1>
+                </mat-card-title>
+            </mat-card-header>
+        </mat-card>
+    </ng-template>
+    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
+    </mat-paginator> -->
 </mat-card>

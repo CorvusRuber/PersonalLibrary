@@ -63,6 +63,7 @@ export class ApiService {
         payload.nome = "Inserisci il nome";
         break;
       case "genres":
+        payload.titolo = "Inserisci il titolo";
         break;
       default:
         payload.titolo = "Inserisci il titolo";

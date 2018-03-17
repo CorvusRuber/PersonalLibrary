@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { ApiService } from "../../services/api/api.service";
 import { ContentEditComponent } from "../content-edit/content-edit.component";
+import { CustomSearchComponent } from "../custom-search/custom-search.component";
 import { ICommonItem } from "../../models/common-item";
 import { MatDialog } from "@angular/material";
 import { Router } from '@angular/router';
@@ -39,7 +40,17 @@ export class MenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       //this.animal = result;
     });
+  }
 
+  search() {
+    let dialogRef = this.dialog.open(CustomSearchComponent,
+      {
+        width: "55%",
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.dir(result);
+    });
   }
 
 }

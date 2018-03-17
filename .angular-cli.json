@@ -62,6 +62,9 @@
         },
         "pipe": {
             "flat": false
+        },
+        "directive": {
+            "flat": false
         }
     }
 }

@@ -1,16 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 import { ApiService } from "../../services/api/api.service";
 import { ContentEditComponent } from "../content-edit/content-edit.component";
 import { CustomSearchComponent } from "../custom-search/custom-search.component";
 import { ICommonItem } from "../../models/common-item";
 import { MatDialog } from "@angular/material";
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  selector: "app-menu",
+  templateUrl: "./menu.component.html",
+  styleUrls: ["./menu.component.scss"]
 })
 export class MenuComponent implements OnInit {
   @Input("menuData") menuData;
@@ -23,28 +23,27 @@ export class MenuComponent implements OnInit {
 
   navigate(endpoint) {
     this.router.navigate(["/index/" + endpoint]);
-    //console.log(endpoint);
+    // console.log(endpoint);
   }
 
   insert(endpoint) {
-    let item: ICommonItem;
-    let fields = this.service.getNewItemPayload(endpoint);
-    let dialogRef = this.dialog.open(ContentEditComponent,
+    const fields = this.service.getNewItemPayload(endpoint);
+    const dialogRef = this.dialog.open(ContentEditComponent,
       {
         width: "35%",
         data:
-          { item: item, requiredFields: fields, endpoint: endpoint }
+          { item: null, requiredFields: fields, endpoint: endpoint }
       }
     );
     dialogRef.afterClosed().subscribe(result => {
       this.router.navigate(["/index/"]).then(res => {
-        this.router.navigate(["/index/" + endpoint])
+        this.router.navigate(["/index/" + endpoint]);
       });
     });
   }
 
   search() {
-    let dialogRef = this.dialog.open(CustomSearchComponent,
+    const dialogRef = this.dialog.open(CustomSearchComponent,
       {
         width: "55%",
       }

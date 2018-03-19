@@ -1,17 +1,17 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
-import { catchError, retry } from 'rxjs/operators';
 
 import { API_URL } from "../../../environments/environment";
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { HttpHeaders } from '@angular/common/http';
+import { ErrorObservable } from "rxjs/observable/ErrorObservable";
+import { HttpHeaders } from "@angular/common/http";
 import { ICommonItem } from "../../models/common-item";
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/Observable";
+import { catchError } from "rxjs/operators";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
+    "Content-Type": "application/json",
+    "Authorization": "my-auth-token"
   })
 };
 
@@ -33,10 +33,10 @@ export class ApiService {
   }
 
   delete(endpoint: string, params: HttpParams) {
-    let options = {
+    const options = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'my-auth-token'
+        "Content-Type": "application/json",
+        "Authorization": "my-auth-token"
       }),
       params: params
     };
@@ -50,13 +50,15 @@ export class ApiService {
   }
 
   getNewItemPayload(method) {
-    let payload: ICommonItem = {};
+    const payload: ICommonItem = {};
     payload.descrizione = "Inserisci la descrizione";
     switch (method) {
       case "books":
         payload.titolo = "Inserisci il titolo";
         payload.autore = "Inserisci l'autore";
-        payload.anno = { value: null, text: "Inserisci l'anno di pubblicazione" };
+        payload.anno = {
+          value: null, text: "Inserisci l'anno di pubblicazione"
+        };
         payload.editore = "Inserisci l'editore";
         payload.isbn = "Inserisci il numero ISBN";
         payload.img = "Scegli l'immagine di copertina";

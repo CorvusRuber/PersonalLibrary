@@ -1,7 +1,13 @@
 {
     "books": "libri",
-    "authors": "autori",
+    "people": "persone",
     "publishers": "editori",
     "genres": "generi",
-    "ricerca": "ricerca"
+    "ricerca": "ricerca",
+    "albums": "album",
+    "episodes": "episodi",
+    "groups": "gruppi",
+    "seasons": "stagioni",
+    "series": "serie",
+    "types": "tipi"
 }

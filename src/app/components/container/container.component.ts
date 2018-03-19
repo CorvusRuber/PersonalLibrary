@@ -33,11 +33,11 @@ export class ContainerComponent implements OnInit, OnDestroy {
     if (this.menuOpen) {
       this.service.get("collections").then((data) => {
         this.items = data;
-        this.items.push({ name: "ricerca" });
-        console.dir(data);
-        this.items.forEach(element => {
-          console.log(element);
-        });
+        console.dir(this.items);
+        // this.items.push({ name: "ricerca" });
+        // this.items.forEach(element => {
+
+        // });
       });
     }
   }

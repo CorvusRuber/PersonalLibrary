@@ -3,7 +3,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TranslationService } from '../../services/translation/translation.service';
 
 @Pipe({
-  name: 'translation'
+  name: 'translation',
+  pure: false
 })
 export class TranslationPipe implements PipeTransform {
   resources: any;

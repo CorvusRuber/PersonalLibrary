@@ -23,6 +23,7 @@ import { ContainerComponent } from './container/container.component';
 import { ContentComponent } from './content/content.component';
 import { ContentEditComponent } from './content-edit/content-edit.component';
 import { CustomSearchComponent } from './custom-search/custom-search.component';
+import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MediaMatcher } from "@angular/cdk/layout";
 import { MenuComponent } from './menu/menu.component';
@@ -53,22 +54,26 @@ export const contentRoutes: Routes = [
       {
         path: "books",
         component: ContentComponent,
-        data: { function: "books" }
+        data: { function: "books" },
+        runGuardsAndResolvers: 'always'
       },
       {
-        path: "authors",
+        path: "people",
         component: ContentComponent,
-        data: { function: "authors" }
+        data: { function: "people" },
+        runGuardsAndResolvers: 'always'
       },
       {
         path: "publishers",
         component: ContentComponent,
-        data: { function: "publishers" }
+        data: { function: "publishers" },
+        runGuardsAndResolvers: 'always'
       },
       {
         path: "genres",
         component: ContentComponent,
-        data: { function: "genres" }
+        data: { function: "genres" },
+        runGuardsAndResolvers: 'always'
       },
       {
         path: "ricerca",
@@ -79,7 +84,8 @@ export const contentRoutes: Routes = [
         path: "**",
         component: NotFoundComponent
       }
-    ]
+    ],
+    runGuardsAndResolvers: 'always'
   },
   // {
   //   path: 'detail',
@@ -137,9 +143,11 @@ export const contentRoutes: Routes = [
     MatTabsModule,
     MatPaginatorModule,
     PipesModule,
+    FormsModule,
     RouterModule.forRoot(
       contentRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      { enableTracing: false, onSameUrlNavigation: 'reload' },
+      // <-- debugging purposes only
     ),
   ],
   declarations: [

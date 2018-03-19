@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
   @Input("menuData") menuData;
 
   constructor(private service: ApiService, private router: Router, public dialog: MatDialog) {
-
   }
 
   ngOnInit() {
@@ -34,11 +33,13 @@ export class MenuComponent implements OnInit {
       {
         width: "35%",
         data:
-          { item: item, requiredFields: fields }
+          { item: item, requiredFields: fields, endpoint: endpoint }
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      //this.animal = result;
+      this.router.navigate(["/index/"]).then(res => {
+        this.router.navigate(["/index/" + endpoint])
+      });
     });
   }
 

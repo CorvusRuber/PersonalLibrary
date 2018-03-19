@@ -1,6 +1,8 @@
-<mat-card *ngIf="func">
-    <mat-card-title>{{func | translation:'capitalize'}}</mat-card-title>
-    <mat-tab-group (selectedTabChange)="manageTab($event)" *ngIf="items;else no_content">
+<div *ngIf="func" class="main-content-card">
+    <div class="section-title">
+        <span>{{func | translation:'capitalize'}}</span>
+    </div>
+    <mat-tab-group (selectedTabChange)="manageTab($event)" *ngIf="items && items.length>0;else no_content">
         <mat-tab label="Pagina {{page}}" *ngFor="let page of pager.pages">
             <mat-grid-list cols="4">
                 <mat-grid-tile *ngFor="let item of pagedItems" class="tile-content">
@@ -23,7 +25,7 @@
                         <mat-divider></mat-divider>
                         <mat-card-actions>
                             <button mat-raised-button color="accent" (click)="modify(item)">Modifica</button>
-                            <button mat-raised-button color="accent">Cancella</button>
+                            <button mat-raised-button color="accent" (click)="delete(item._id)">Cancella</button>
                         </mat-card-actions>
                     </mat-card>
                 </mat-grid-tile>
@@ -39,6 +41,4 @@
             </mat-card-header>
         </mat-card>
     </ng-template>
-    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event">
-    </mat-paginator> -->
-</mat-card>
+</div>

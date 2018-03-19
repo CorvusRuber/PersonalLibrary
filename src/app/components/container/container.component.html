@@ -3,7 +3,7 @@
         <button mat-icon-button (click)="toggleMenu()"><mat-icon>menu</mat-icon></button> Biblioteca
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container class="main-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="menuOpen">
             <mat-nav-list>
                 <app-menu [menuData]="items"></app-menu>

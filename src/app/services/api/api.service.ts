@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http";
 import { catchError, retry } from 'rxjs/operators';
 
 import { API_URL } from "../../../environments/environment";
@@ -32,8 +32,17 @@ export class ApiService {
     return this.http.put(API_URL + endpoint, payload, httpOptions).pipe(catchError(this.errorHandler)).toPromise();
   }
 
-  delete(endpoint: string, payload?: any) {
-    return this.http.delete(API_URL + endpoint, httpOptions).pipe(catchError(this.errorHandler)).toPromise();
+  delete(endpoint: string, params: HttpParams) {
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'my-auth-token'
+      }),
+      params: params
+    };
+
+    console.dir(options);
+    return this.http.delete(API_URL + endpoint, options).pipe(catchError(this.errorHandler)).toPromise();
   }
 
   errorHandler(error: HttpErrorResponse) {
@@ -52,7 +61,7 @@ export class ApiService {
         payload.isbn = "Inserisci il numero ISBN";
         payload.img = "Scegli l'immagine di copertina";
         break;
-      case "authors":
+      case "people":
         payload.nome = "Inserisci il nome";
         payload.cognome = "Inserisci il cognome";
         payload.nato = { value: null, text: "Data di nascita" };

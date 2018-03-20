@@ -1,18 +1,18 @@
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { AfterViewInit, Component, OnDestroy, OnInit, Sanitizer, SecurityContext } from "@angular/core";
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog, PageEvent } from "@angular/material";
 
-import { ApiService } from '../../services/api/api.service';
-import { ContentEditComponent } from '../content-edit/content-edit.component';
-import { DomSanitizer } from '@angular/platform-browser';
-import { HttpParams } from '@angular/common/http';
-import { ICommonItem } from '../../models/common-item';
+import { ApiService } from "../../services/api/api.service";
+import { ContentEditComponent } from "../content-edit/content-edit.component";
+import { DomSanitizer } from "@angular/platform-browser";
+import { HttpParams } from "@angular/common/http";
+import { ICommonItem } from "../../models/common-item";
 import { PagerService } from "../../services/pager/pager.service";
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  selector: "app-content",
+  templateUrl: "./content.component.html",
+  styleUrls: ["./content.component.scss"]
 })
 export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
   items: ICommonItem[] = null;
@@ -41,6 +41,7 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
   initData() {
     this.service.get(this.func).then((data: ICommonItem[]) => {
       this.items = data;
+      console.dir(this.items);
       this.length = this.items.length;
       this.setPage(1);
       // console.dir(this.index);
@@ -66,7 +67,7 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   modify(item) {
-    let dialogRef = this.dialog.open(ContentEditComponent,
+    const dialogRef = this.dialog.open(ContentEditComponent,
       {
         width: "35%",
         data:
@@ -75,7 +76,7 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     dialogRef.afterClosed().subscribe(result => {
-      //this.animal = result;
+      // this.animal = result;
     });
   }
 
@@ -84,13 +85,13 @@ export class ContentComponent implements OnInit, AfterViewInit, OnDestroy {
     params = params.append("id", id);
     this.service.delete(this.func, params).then(response => {
       this.router.navigate(["/index/"]).then(res => {
-        this.router.navigate(["/index/" + this.func])
+        this.router.navigate(["/index/" + this.func]);
       });
     });
   }
 
   getImage(imgData) {
-    let data_uri_prefix = "data:" + imgData.contentType + ";base64,";
+    const data_uri_prefix = "data:" + imgData.contentType + ";base64,";
     return this.sanitizer.bypassSecurityTrustUrl(data_uri_prefix + imgData.data);
   }
 

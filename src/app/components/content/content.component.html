@@ -12,9 +12,14 @@
                                 <h2>{{item.titolo | translation}}</h2>
                             </mat-card-title>
                             <ng-template #other_content>
-                                <mat-card-title>
-                                    {{item.nome | translation}}
+                                <mat-card-title *ngIf="item.cognome;else name_only">
+                                    <h2>{{item.nome | translation}} {{item.cognome | translation}}</h2>
                                 </mat-card-title>
+                                <ng-template #name_only>
+                                    <mat-card-title>
+                                        <h2>{{item.nome | translation}}</h2>
+                                    </mat-card-title>
+                                </ng-template>
                             </ng-template>
                             <img mat-card-avatar *ngIf="item.img" [src]="getImage(item.img)">
                         </mat-card-header>
